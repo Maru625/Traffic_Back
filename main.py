@@ -1,8 +1,10 @@
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from router import index
+from router.index import router_index
+
 
 app = FastAPI()
 
@@ -12,17 +14,15 @@ app.add_middleware(CORSMiddleware,
     allow_methods=["*"],
     allow_headers=["*"],)
 
-for router in index.router_index:
+for router in router_index:
     app.include_router(router=router)
 
 @app.get("/test")
 def root():
     return {"Hello": "World"}
 
-
-
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
 
 # conda install -c conda-forge uvicorn
 # conda install -c conda-forge fastapi

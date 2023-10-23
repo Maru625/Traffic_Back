@@ -1,6 +1,11 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-class Flight(BaseModel):
-    flight_name : str
+@dataclass
+class Flight_DB:
+    id : str
     latitude : float
     longitude : float
+
+    def change_flight_position(self, latitude:float, longitude:float):
+        self.latitude = latitude
+        self.longitude = longitude
