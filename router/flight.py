@@ -1,5 +1,7 @@
 from fastapi import APIRouter
 
+from model.flight import Flight
+
 
 flightRouter = APIRouter(tags=['flight'])
 
@@ -7,11 +9,19 @@ flightRouter = APIRouter(tags=['flight'])
 async def create_flight():
     return 
 
-@flightRouter.get('/flight')
+@flightRouter.get('/flight', response_model=list[Flight])
 async def read_flight():
     return [
-        {"name": "Portal Gun", "price": 42.0},
-        {"name": "Plumbus", "price": 32.0},
+        {
+            "flight_name" : "test1", 
+            "latitude" :37.566515 + 0.001,
+            "longitude" : 126.977969 + 0.001 ,
+        },
+        {
+            "flight_name" : "test2", 
+            "latitude" :37.566515 - 0.001,
+            "longitude" : 126.977969 - 0.001 ,
+        }
     ]
 
 @flightRouter.patch('/flight')
