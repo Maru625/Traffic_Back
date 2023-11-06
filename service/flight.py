@@ -15,8 +15,9 @@ def db_create_flight(id : str, altitude : float , lat : float, lng : float, phas
 def db_read_flight():
     res : list[Flight_Schema] = []
     for flight in DB_flights:
-        res.append(Flight_Schema(flight.id, flight.altitude, flight.latitude, flight.longitude, flight.phase,
-                   flight.time, flight.distance))
+        res.append(Flight_Schema(id=flight.id,altitude= flight.altitude,latitude= flight.latitude, 
+                                 longitude= flight.longitude, phase=flight.phase, time=flight.time,
+                                 distance= flight.distance))
     return res
 
 def db_update_flight_position(id : str, altitude : float , lat : float, lng : float, phase : str | None, 
