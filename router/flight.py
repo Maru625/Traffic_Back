@@ -14,9 +14,9 @@ async def create_flight(flight : Flight):
         return responses.JSONResponse(status_code=201, content={"message" : "Secesss create flight data"})
     return responses.JSONResponse(status_code=409, content={"message" : "The ID you entered is duplicate."})
 
-@flightRouter.get('/flight', response_model=list[Flight] | responses.JSONResponse)
+@flightRouter.get('/flight')
 async def read_flight():
-    res = db_read_flight()
+    res : list[Flight] = db_read_flight()
     if (len(res)):
         return res
     return responses.JSONResponse(status_code=210, content={"message" : "Flight is None"})
