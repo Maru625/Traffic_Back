@@ -22,7 +22,8 @@ def root():
     return {"Hello": "World"}
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000,)
+    # uvicorn.run("main:app", host="0.0.0.0", port=443, ssl_certfile="/home/wodnr0625/dev/cert.pem", ssl_keyfile="/home/wodnr0625/dev/key.pem")
+    uvicorn.run("main:app", host="0.0.0.0", port=80)
 
 # 배포 GCP로 
 
