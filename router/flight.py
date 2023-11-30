@@ -8,8 +8,7 @@ flightRouter = APIRouter(tags=['flight'])
 
 @flightRouter.post('/flight')
 async def create_flight(flight : Flight):
-    res = db_create_flight(flight.id, flight.altitude, flight.latitude, flight.longitude, flight.phase,
-                   flight.time, flight.distance)
+    res = db_create_flight(flight.id, flight.altitude, flight.latitude, flight.longitude)
     if res:
         return responses.JSONResponse(status_code=201, content={"message" : "Secesss create flight data"})
     return responses.JSONResponse(status_code=409, content={"message" : "The ID you entered is duplicate."})
@@ -23,8 +22,7 @@ async def read_flight():
 
 @flightRouter.patch('/flight')
 async def update_flight(flight : Flight):
-    res = db_update_flight_position(flight.id, flight.altitude, flight.latitude, flight.longitude, flight.phase,
-                   flight.time, flight.distance)
+    res = db_update_flight_position(flight.id, flight.altitude, flight.latitude, flight.longitude)
     if res:
         return responses.JSONResponse(status_code=200, content={"message" : "secesss flight DB update"})
     return responses.JSONResponse(status_code=404, content={"message" : "Flight information with the same ID entered cannot be found."})

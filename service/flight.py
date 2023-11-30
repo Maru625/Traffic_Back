@@ -3,28 +3,26 @@ from model.flight import Flight_DB
 from database.index import DB_flights
 
 
-def db_create_flight(id : str, altitude : float , lat : float, lng : float, phase : str | None, 
-                     time : str | None, distance : str | None ):
+def db_create_flight(id : str, altitude : float , lat : float, lng : float):
     for flight in DB_flights:
         if flight.id == id:
             return False
-    DB_flights.append(Flight_DB(id, altitude, lat, lng, phase, distance, time))
+    DB_flights.append(Flight_DB(id, altitude, lat, lng))
     return True
     
 
 def db_read_flight():
     res : list[Flight_Schema] = []
     for flight in DB_flights:
-        res.append(Flight_Schema(id=flight.id,altitude= flight.altitude,latitude= flight.latitude, 
-                                 longitude= flight.longitude, phase=flight.phase, time=flight.time,
-                                 distance= flight.distance))
+        res.append(Flight_Schema(id=flight.id, altitude=flight.altitude[-1],
+                                 latitude= flight.latitude[-1], 
+                                 longitude= flight.longitude[-1]))
     return res
 
-def db_update_flight_position(id : str, altitude : float , lat : float, lng : float, phase : str | None, 
-                     time : str | None, distance : str | None ):
+def db_update_flight_position(id : str, altitude : float , lat : float, lng : float):
     for flight in DB_flights:
         if flight.id == id:
-            flight.change_flight_position(altitude, lat, lng, phase, time, distance)
+            flight.change_flight_position(altitude, lat, lng)
             return True
     return False
 

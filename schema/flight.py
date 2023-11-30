@@ -6,7 +6,4 @@ class Flight(BaseModel):
     altitude : float
     latitude : float
     longitude : float
-    phase : str | None = None
-    time : str | None = None
-    distance : str | None = None
 
