@@ -15,9 +15,11 @@ def generate_trajectory(sample_id :str): # 경로 생성 예시 코드
 
     tmp_flights_list.append(Flight_Model(id=sample_id))
 
+    multiple = random.randrange(1,5)
+
     while(1):
-        lat += 0.0001 * random.randrange(1,5)
-        lng += 0.0001 * random.randrange(1,5)
+        lat += 0.0001 * multiple
+        lng += 0.0001 * multiple
         
         for flight in tmp_flights_list:
             if flight.id == sample_id:
@@ -48,6 +50,6 @@ async def generate_single_positions(speed : float, idx : int):
         for db_fligth in DB_FLIGHTS:
             if db_fligth.id == tmp_flights_list[idx].id:
                 db_fligth.add_flight_position(alt, lat, lng)
-                await asyncio.sleep(speed)
+                await asyncio.sleep(1/speed)
 
     

@@ -19,6 +19,9 @@ def db_read_flight():
                                  longitude= flight.longitude[-1]))
     return res
 
+def db_read_all_flight():
+    return DB_flights
+
 def db_update_flight_position(id : str, altitude : float , lat : float, lng : float):
     for flight in DB_flights:
         if flight.id == id:

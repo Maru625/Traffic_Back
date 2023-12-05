@@ -1,4 +1,5 @@
 from fastapi import APIRouter, responses
+import os
 
 from schema.flight import Flight
 from service.flight import *
@@ -19,6 +20,14 @@ async def read_flight():
     if (len(res)):
         return res
     return responses.JSONResponse(status_code=210, content={"message" : "Flight is None"})
+
+
+@flightRouter.get("/flight/files")
+async def get_file():
+    """파일을 가져옵니다."""
+    res = db_read_all_flight()
+    return res
+
 
 @flightRouter.patch('/flight')
 async def update_flight(flight : Flight):
