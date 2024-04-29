@@ -4,7 +4,6 @@ from model.flight import Flight_DB
 DB_flights : list[Flight_DB] = []
 DB_Test : int = 0
 
-
 # 서울 UAM 운용시 주요 거점 정보
 LOCATIONS = {
     1: {"name": "SuSeo Vertiport", "lat": 37.4909, "lon": 127.1056, "is_vertiport": True},

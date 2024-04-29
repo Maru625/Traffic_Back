@@ -2,7 +2,8 @@ import time
 from fastapi import APIRouter, responses, File, UploadFile, HTTPException
 
 # from schema.plan import plan
-from service.plan import *
+from service.flight_path_gen import *
+from service.flight_position_gen import *
 
 
 planRouter = APIRouter(tags=['plan'])

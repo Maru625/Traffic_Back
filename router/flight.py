@@ -2,7 +2,7 @@ from fastapi import APIRouter, responses
 import os
 
 from schema.flight import Flight
-from service.flight import *
+from service.flight_path_gen import *
 
 
 flightRouter = APIRouter(tags=['flight'])
